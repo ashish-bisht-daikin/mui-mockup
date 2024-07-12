@@ -3,31 +3,71 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Dev defined colors */
+  --bg-color-primary: #fff;
+  --bg-color-secondary: #fff;
+  --text-color: #333;
+  --primary-theme-color: #00a0e6;
+  --secondary-theme-color: #44c8f4;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --bg-color-primary: #fff;
+    --bg-color-secondary: #fff;
+    --text-color: #333;
+    --primary-theme-color: #00a0e6;
+    --secondary-theme-color: #44c8f4;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: rgb(var(--text-color));
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--bg-color-secondary))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--bg-color-primary));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.primary-bg {
+  background-color: var(--bg-color-primary) !important;
+}
+
+.secondary-bg {
+  background-color: var(--bg-color-secondary) !important;
+}
+
+.text-color {
+  color: var(--text-color) !important;
+}
+
+.primary-theme-bg {
+  background-color: var(--primary-theme-color) !important;
+}
+
+.primary-theme-text {
+  color: var(--primary-theme-color) !important;
+}
+
+.secondary-theme-bg {
+  background-color: var(--primary-theme-color) !important;
+}
+
+.notification-badge {
+  background-color: red;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
 }

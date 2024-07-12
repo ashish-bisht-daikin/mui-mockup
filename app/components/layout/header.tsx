@@ -49,7 +49,7 @@ const Header = () => {
   ];
   return (
     <header className="h-100 border-b-2 shadow w-full">
-      <div className="flex items-center justify-between p-8">
+      <div className="flex items-center justify-between py-8 px-4">
         <Link href={"/"}>
           <Image
             width={200}

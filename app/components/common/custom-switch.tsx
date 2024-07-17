@@ -4,7 +4,13 @@ import Switch, { SwitchProps } from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 
 const CustomSwitch = styled((props: SwitchProps) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+  <Switch
+    checked={props.checked}
+    onChange={props.onChange}
+    focusVisibleClassName=".Mui-focusVisible"
+    disableRipple
+    {...props}
+  />
 ))(({ theme }) => ({
   width: 56,
   height: 26,

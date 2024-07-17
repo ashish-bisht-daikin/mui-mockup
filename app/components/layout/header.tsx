@@ -1,19 +1,22 @@
 "use client";
 import { images } from "@/app/constants/images";
-import Image from "next/image";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import KeyIcon from "@mui/icons-material/Key";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
-import CustomSwitch from "../common/custom-switch";
+import Image from "next/image";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
 import CustomButton from "../common/button";
-import { BUTTON_VARIANTS } from "@/app/constants/variants";
-import { useState } from "react";
 import CustomMenu from "../common/custom-menu";
+import CustomSwitch from "../common/custom-switch";
+import { publish } from "@/app/event";
+import { setCookie } from "@/app/helpers/cookie";
+import useThemeContext from "@/app/hooks/useThemeContext";
 
 const Header = () => {
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const [activeNav, setActiveNav] = useState(0);
+  const [theme, updateTheme] = useThemeContext();
   const navItems = [
     {
       title: "Dashboard",
@@ -47,6 +50,14 @@ const Header = () => {
       ],
     },
   ];
+  const handleTheme = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const checked = target.checked;
+    console.log(checked)
+    setCookie("getTheme", checked ? "dark" : "light");
+    //@ts-expect-error
+    updateTheme(checked ? "dark" : "light");
+  };
   return (
     <header className="h-100 border-b-2 shadow w-full">
       <div className="flex items-center justify-between py-8 px-4">
@@ -59,7 +70,12 @@ const Header = () => {
           />
         </Link>
         <div className="flex items-center justify-between w-1/6">
-          <CustomSwitch className="cursor-pointer" {...label} />
+          <CustomSwitch
+            checked={theme==="dark" ? true: false}
+            onChange={handleTheme}
+            className="cursor-pointer"
+            {...label}
+          />
           <div className="cursor-pointer relative">
             <NotificationsIcon />
             <span className="notification-badge"></span>
